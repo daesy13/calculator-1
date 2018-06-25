@@ -2,35 +2,35 @@
 
 from arithmetic import *
 
-while True:
-	user_input = input("> ")
-	user_list = user_input.split(" ")
+def calculator_repl():
+	while True:
+		user_input = input("> ")
+		user_list = user_input.split(" ")
 
-	if user_input == "q": #quit if q is entered
-		print("Exit")
-		break
-	elif len(user_list) < 2:
-		print("Not Enough Inputs") #validate that at least 2 inputs are entered
-		continue
+		if user_input == "q": #quit if q is entered
+			print("Exit")
+			break
+		elif len(user_list) < 2:
+			print("Not Enough Inputs") #validate that at least 2 inputs are entered
+			continue
 
-	token = user_list[0]
-	num1 = float(user_list[1])
+		token = user_list[0]
+		num1 = user_list[1]
 
-	if len(user_list) < 3:
-		num2 = 0
-	else:
-		num2 = float(user_list[2])
+		if len(user_list) < 3:
+			num2 = "0"
+		else:
+			num2 = user_list[2]
 
-	if len(user_list) < 4: 
-		num3 = 0
-	else:
-		num3 = float(user_list[3])
+		if len(user_list) < 4: 
+			num3 = "0"
+		else:
+			num3 = user_list[3]
 
+		is_digits(token, num1,num2,num3)
+
+def calculate(token,num1,num2,num3):
 	result = None
-
-
-	# to process the results 
-	# if 1st input = +
 	if token == "+":
 		result = add(num1, num2)
 
@@ -64,8 +64,20 @@ while True:
 	else:
 		result = "Please enter an operator followed by two integers."
 
-
 	print(result)
+
+def is_digits(token,num1,num2,num3):
+	if not num1.isdigit() or not num2.isdigit() or not num3.isdigit():
+		print("those arent numbers")
+		return
+	else:
+		calculate(token, float(num1),float(num2),float(num3))
+
+
+calculator_repl()
+
+
+
 
 
 
